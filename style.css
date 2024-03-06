@@ -1,0 +1,73 @@
+/* ! default style overwrite */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+}
+
+/* !navbar style here */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2364aa;
+    padding: 30px 60px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.cart {
+    background: #fff;
+    color: #2364aa;
+    padding: 20px;
+    font-size: 25px;
+    position: relative;
+}
+.count {
+    background: red;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    padding: 5px;
+    top: -10px;
+    right: -10px;
+}
+
+/* !shop style here */
+
+.shop {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item {
+    width: 202px;
+    border: 1px solid #2364aa;
+    border-radius: 5px;
+}
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button {
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+}
+.counter-icon {
+    cursor: pointer;
+}
