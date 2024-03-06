@@ -28,7 +28,8 @@ body {
     font-size: 25px;
     position: relative;
 }
-.count {
+
+.cart-amount {
     background: red;
     color: #fff;
     text-align: center;
@@ -37,6 +38,7 @@ body {
     padding: 5px;
     top: -10px;
     right: -10px;
+    font-size: 16px;
 }
 
 /* !shop style here */
@@ -55,6 +57,7 @@ body {
 .details {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
     padding: 10px;
 }
