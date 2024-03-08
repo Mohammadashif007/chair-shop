@@ -34,38 +34,38 @@ const chairs = [
 ];
 
 const shop = document.getElementById("shop");
-
-const basket = JSON.parse(localStorage.getItem("data")) || [];
-
-const generatedShop = () => {
+let basket = JSON.parse(localStorage.getItem("data")) || [];
+const generateShop = () => {
     return (shop.innerHTML = chairs
         .map((x) => {
-            const { chairName, image, price, description, id } = x;
-            const search = basket.find(x => x.id === id) || [];
+            const { chairName, description, image, price, id } = x;
+            const search = basket.find((x) => x.id === id) || [];
             return `
-        <div id="product-id-${id}" class="item">
-        <img width="200px" height="250px" src=${image} alt="" />
-        <div class="details">
-            <h3>${chairName}</h3>
-            <p>
-                ${description}
-            </p>
-            <div class="price">
-                <h2>$${price}</h2>
-                <div class="button">
-                    <i onclick="decrement(${id})" class="fa-solid fa-minus counter-icon"></i>
-                    <div id=${id}>${search === undefined ? 0 : search.item}</div>
-                    <i onclick="increment(${id})" class="fa-solid fa-plus counter-icon"></i>
+        <div class="item">
+                <img width="200px" height="250px"  src=${image} alt="" />
+                <div class="details">
+                    <h3>${chairName}</h3>
+                    <p>
+                        ${description}
+                    </p>
+                    <div class="price">
+                        <h2>$${price}</h2>
+                        <div class="button">
+                            <i onclick="decrement(${id})" class="fa-solid fa-minus"></i>
+                            <div id=${id}>${
+                            search.item === undefined ? "0" : search.item
+                            }</div>
+                            <i onclick="increment(${id})" class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
         `;
         })
         .join(""));
 };
 
-generatedShop();
+generateShop();
 
 const increment = (id) => {
     const search = basket.find((x) => x.id === id);
@@ -74,29 +74,31 @@ const increment = (id) => {
     } else {
         search.item += 1;
     }
-    localStorage.setItem("data", JSON.stringify(basket));
     update(id);
+    localStorage.setItem("data", JSON.stringify(basket));
 };
 const decrement = (id) => {
     const search = basket.find((x) => x.id === id);
-    if (search.item === 0) return;
+    if (search === undefined) return;
+    else if (search.item === 0) return;
     else {
         search.item -= 1;
     }
-    localStorage.setItem("data", JSON.stringify(basket));
     update(id);
+    basket = basket.filter((x) => x.item !== 0);
+    localStorage.setItem("data", JSON.stringify(basket));
 };
 
 const update = (id) => {
     const search = basket.find((x) => x.id === id);
-    document.getElementById(id).innerText = search.item;
-    calculation();
+    const count = document.getElementById(id);
+    count.innerHTML = search.item;
+    calculate();
 };
 
-const calculation = () => {
-    const cartIcon = document.getElementById("cart-amount");
-    // cartIcon.innerHTML = '100'
-    cartIcon.innerHTML = basket.reduce((x, y) => x + y.item, 0);
+const calculate = () => {
+    const cartAmount = document.getElementById("cart-amount");
+    cartAmount.innerHTML = basket.reduce((a, b) => a + b.item, 0);
 };
 
-calculation();
+calculate();

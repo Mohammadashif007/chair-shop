@@ -9,6 +9,10 @@ body {
     font-family: sans-serif;
 }
 
+i {
+    cursor: pointer;
+}
+
 /* !navbar style here */
 
 .navbar {
@@ -24,7 +28,7 @@ body {
 .cart {
     background: #fff;
     color: #2364aa;
-    padding: 20px;
+    padding: 8px;
     font-size: 25px;
     position: relative;
 }
